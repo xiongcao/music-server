@@ -1,6 +1,6 @@
 const db = require('../db/db');
 
-module.exports = db.defineModel('categories', {
+module.exports = db.defineModel('categorie', {
   // 类型 0：语种，1：风格，2：场景，3：情感，4：主题
   name: {
     type: db.STRING(100),
