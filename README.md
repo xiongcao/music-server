@@ -19,10 +19,8 @@
 ### 3.项目目录
 ```bash
 ├── controllers                                # 控制器层，处理请求、响应数据
-    ├── BrandController.js                     # 品牌
     ├── IndexController.js                     # 首页-请求页面
     ├── LoginController.js                     # 登录-处理登录、注册、cookies、session
-    ├── ProductController.js                   # 商品
 ├── db                                         # 数据库相关配置
     ├── config-default.js                      # 数据库默认配置
     ├── config-override.js                     # 生产环境数据库配置
@@ -32,13 +30,9 @@
     ├── init-db.js                             # 数据实例与数据库字段映射处理
     ├── model.js                               # 数据实例与数据库字段映射处理
 ├── models                                     # 数据库表-模型实例的关系映射
-    ├── Brand.js                               # 品牌实例
-    ├── Product.js                             # 商品实例
     ├── User.js                                # 用户实例
 ├── public                                     # swagger-ui
 ├── service                                    # 业务层，操作数据库，处理数据
-    ├── BrandService.js                        # 处理品牌的业务数据
-    ├── ProductService.js                      # 处理商品的业务数据，添加了联表查询、自定义sql语句的例子
     ├── UserService.js                         # 处理用户的业务数据
 ├── static                                     # 资源文件，包括img、js、css、icon静态文件
     ├── css
