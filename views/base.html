@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>{{ title }}</title>
+  <link rel="stylesheet" href="/static/css/bootstrap.css">
+  <script src="/static/js/jquery.js"></script>
+  <script src="/static/js/bootstrap.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <style>
+    header {
+      background-color: #6f5499;
+      color: #cdbfe3;
+      padding: 20px 0;
+      text-align: center;
+    }
+
+    footer {
+      position: fixed;
+      width: 100%;
+      padding: 20px 0;
+      background-color: #ddd;
+      text-align: center;
+      bottom: 0;
+    }
+
+    .container {
+      padding-bottom: 64px;
+    }
+  </style>
+</head>
+
+<body>
+  <header>#HEADER</header>
+  {% block main %} {% endblock %}
+  <footer>#FOOTER</footer>
+</body>
+
+</html>

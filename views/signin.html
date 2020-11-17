@@ -1,0 +1,91 @@
+{% extends "base.html" %} {% block main %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"><span class="glyphicon glyphicon-user"></span> Please sign in</h3>
+          <button type="button" class="btn btn-danger">Signout</button>
+        </div>
+        <div class="panel-body">
+          <form id="userForm">
+            <div class="form-group">
+              <label>Name</label>
+              <input type="text" name="name" class="form-control" placeholder="你的昵称" value="xiaoxiong">
+              <p class="help-block">Your user name</p>
+            </div>
+            <div class="form-group">
+              <label>Password</label>
+              <input type="text" name="password" class="form-control" placeholder="你的密码" value="123456">
+              <p class="help-block">Your user password</p>
+            </div>
+            <button type="button" class="btn btn-primary submit">Sign In</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const $signout = $('.btn-danger');
+  const $submit = $('.submit');
+  const $userForm = $('#userForm');
+  const $helpBlock = $('.help-block');
+  const $username = $('input[name=name]');
+  const $password = $('input[name=password]');
+
+  $submit.on('click', function (e) {
+    e.preventDefault();
+    const username = $username.val();
+    const password = $password.val();
+    if (!valiForm(username, password)) {
+      return false;
+    }
+    $.ajax({
+      url: '/api/signin',
+      type: 'post',
+      xhrFields: {
+        withCredentials: true
+      },
+      data: $userForm.serialize(),
+      success: (res) => {
+        alert(res.msg)
+      }
+    })
+  })
+
+  $signout.on('click', function () {
+    $.ajax({
+      url: '/api/signout',
+      type: 'get',
+      success: (res) => {
+        alert(res.msg)
+      }
+    })
+  })
+
+  $.ajax({
+    url: '/api/getCookies',
+    type: 'get'
+  })
+
+  function valiForm(username, password) {
+    if (!username || !password) {
+      if (!username) {
+        $helpBlock.eq(0).text('请输入账号').css({ color: 'red' });
+      }
+      if (!password) {
+        $helpBlock.eq(1).text('请输入密码').css({ color: 'red' });
+      }
+      return false;
+    } else {
+      $helpBlock.eq(0).text('Your user name').css({ color: '#212529' });
+      $helpBlock.eq(1).text('Your user password').css({ color: '#212529' });
+      return true;
+    }
+  }
+
+
+</script>
+{% endblock %}
