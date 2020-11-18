@@ -24,7 +24,7 @@ module.exports = db.defineModel('singer', {
   nickname: db.STRING(100),
   // 等级
   level: {
-    type: db.STRING(11),
+    type: db.INTEGER(11),
     defaultValue: 1,
   },
   // 头像
@@ -33,9 +33,32 @@ module.exports = db.defineModel('singer', {
     allowNull: true,
     field: 'pic_url'
   },
+  // 别称
+  alias: {
+    type: db.STRING(100),
+    allowNull: true
+  },
+  // 歌曲数量
+  musicCount: {
+    type: db.INTEGER(11),
+    defaultValue: 0,
+    field: 'music_count'
+  },
+  // mv数量
+  mvCount: {
+    type: db.INTEGER(11),
+    defaultValue: 0,
+    field: 'mv_count'
+  },
+  // 专辑数量
+  albumCount: {
+    type: db.INTEGER(11),
+    defaultValue: 0,
+    field: 'album_count'
+  },
   // 简介
   brief: {
-    type: db.STRING,
+    type: TEXT,
     allowNull: true
   },
   // 邮箱

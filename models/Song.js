@@ -17,13 +17,19 @@ module.exports = db.defineModel('song', {
   },
   // 专辑ID
   albumId: {
-    type: db.STRING(50),
+    type: db.INTEGER(11),
     allowNull: true,
     field: 'album_id'
   },
+  // mvID
+  mvId: {
+    type: db.INTEGER(11),
+    allowNull: true,
+    field: 'mv_id'
+  },
   // 歌词ID
   lyricId: {
-    type: db.STRING(50),
+    type: db.INTEGER(11),
     allowNull: true,
     field: 'lyric_id'
   },
