@@ -4,7 +4,8 @@ module.exports = db.defineModel('song', {
   // 歌曲编号
   songId: {
     type: db.INTEGER(11),
-    unique: true
+    unique: true,
+    field: 'song_id'
   },
   // 歌曲名
   name: db.STRING(100),

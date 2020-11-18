@@ -2,9 +2,15 @@ const db = require('../db/db');
 
 module.exports = db.defineModel('like_song', {
   // 用户的ID
-  userId: db.INTEGER(11),
+  userId:  {
+    type: db.INTEGER(11),
+    field: 'user_id'
+  },
   // 喜欢的歌曲ID
-  songId: db.INTEGER(11),
+  songId: {
+    type: db.INTEGER(11),
+    field: 'song_id'
+  },
   // 状态
   status: {
     type: db.INTEGER(11),

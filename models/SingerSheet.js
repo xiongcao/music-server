@@ -4,10 +4,14 @@ module.exports = db.defineModel('singer_sheet', {
   // 歌单编号
   sheetId: {
     type: db.INTEGER(11),
-    unique: true
+    unique: true,
+    field: 'sheet_id'
   },
   // 创建者ID
-  userId: db.INTEGER(11),
+  userId:  {
+    type: db.INTEGER(11),
+    field: 'user_id'
+  },
   // 歌单名
   name: db.STRING(100),
   // 图片路径

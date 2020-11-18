@@ -2,9 +2,15 @@ const db = require('../db/db');
 
 module.exports = db.defineModel('follow_singer', {
   // 关注用户的ID
-  userId: db.INTEGER(11),
+  userId:  {
+    type: db.INTEGER(11),
+    field: 'user_id'
+  },
   // 被关注歌手的ID
-  singerId: db.INTEGER(11),
+  singerId: {
+    type: db.INTEGER(11),
+    field: 'singer_id'
+  },
   // 状态
   status: {
     type: db.INTEGER(11),

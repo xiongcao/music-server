@@ -4,10 +4,14 @@ module.exports = db.defineModel('album', {
   // 专辑编号
   albumId: {
     type: db.INTEGER(11),
-    unique: true
+    unique: true,
+    field: 'album_id'
   },
   // 歌手编号
-  singerId: db.INTEGER(11),
+  singerId: {
+    type: db.INTEGER(11),
+    field: 'singer_id'
+  },
   // 专辑名
   name: db.STRING(100),
   // 图片路径
@@ -36,12 +40,14 @@ module.exports = db.defineModel('album', {
   // 发布时间
   publishTime: {
     type: db.BIGINT,
-    allowNull: true
+    allowNull: true,
+    field: 'publish_time'
   },
   // 版本
   subType: {
     type: db.STRING(100),
-    allowNull: true
+    allowNull: true,
+    field: 'sub_type'
   },
   // 公司
   company: {

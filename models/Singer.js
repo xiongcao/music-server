@@ -4,7 +4,8 @@ module.exports = db.defineModel('singer', {
   // 歌手编号（歌手即用户）
   singerId: {
     type: db.INTEGER(11),
-    unique: true
+    unique: true,
+    field: 'singer_id'
   },
   // 用户名
   name: {
