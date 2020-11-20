@@ -56,10 +56,10 @@ app.use(templating('views', {
 }));
 
 // 使用swagger
-// app.use(templating('public', {
-//   noCache: true,
-//   watch: true
-// }));
+app.use(templating('public', {
+  noCache: true,
+  watch: true
+}));
 
 // bind .rest() for ctx:
 app.use(rest.restify());
@@ -69,5 +69,5 @@ app.use(rest.checkLoginStatus());
 app.use(controller());
 
 
-app.listen(3000);
-console.log('app started at http://localhost:3000');
+app.listen(3200);
+console.log('app started at http://localhost:3200');
