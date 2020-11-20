@@ -3,7 +3,7 @@ const db = require('../db/db');
 module.exports = db.defineModel('singer', {
   // 歌手编号（歌手即用户）
   singerId: {
-    type: db.INTEGER(11),
+    type: db.BIGINT,
     unique: true,
     field: 'singer_id'
   },
@@ -58,7 +58,7 @@ module.exports = db.defineModel('singer', {
   },
   // 简介
   brief: {
-    type: TEXT,
+    type: db.TEXT,
     allowNull: true
   },
   // 邮箱
@@ -69,7 +69,7 @@ module.exports = db.defineModel('singer', {
     defaultValue: 2 // 0: 难，1：女，2：保密
   },
   // 生日
-  brithday: {
+  birthday: {
     type: db.STRING(50),
     allowNull: true
   },

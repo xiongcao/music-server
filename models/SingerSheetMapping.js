@@ -1,10 +1,10 @@
 const db = require('../db/db');
 
-module.exports = db.defineModel('tag_sheet_mapping', {
-  // 标签编号
-  tagId: {
+module.exports = db.defineModel('singer_sheet_mapping', {
+  // 用户编号
+  singerId: {
     type: db.BIGINT,
-    field: 'tag_id'
+    field: 'singer_id'
   },
   // 歌单编号
   sheetId: {
