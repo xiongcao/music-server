@@ -27,6 +27,12 @@ module.exports = db.defineModel('song', {
     allowNull: true,
     field: 'mv_id'
   },
+  // 时长
+  dt: {
+    type: db.BIGINT,
+    allowNull: true,
+    field: 'dt'
+  },
   // 歌词ID
   lyricId: {
     type: db.INTEGER(11),
