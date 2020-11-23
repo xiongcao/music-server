@@ -43,7 +43,6 @@ app.use(async (ctx, next) => {
 
 // static file support:
 let staticFiles = require('./static-files');
-app.use(staticFiles('/public/', __dirname + '/public'));
 app.use(staticFiles('/static/', __dirname + '/static'));
 
 // parse request body:
@@ -51,12 +50,6 @@ app.use(bodyParser({ enableTypes: ['json', 'form', 'text'] }));
 
 // add nunjucks as view:
 app.use(templating('views', {
-  noCache: true,
-  watch: true
-}));
-
-// 使用swagger
-app.use(templating('public', {
   noCache: true,
   watch: true
 }));

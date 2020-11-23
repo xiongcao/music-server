@@ -84,3 +84,8 @@ or
 ``` bash
   yarn dev
 ```
+
+## 版本更新
+1. 重新设置swagger文件访问路径
+2. 获取controllers 文件名称，使之接口可以省略路由名称
+3. rest添加默认返回状态和信息

@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "NeteaseCloudMusicApi": "^3.47.3",
     "crypto": "^1.0.1",
     "koa": "^2.13.0",
     "koa-bodyparser": "^4.3.0",

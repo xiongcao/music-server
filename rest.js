@@ -32,7 +32,7 @@ module.exports = {
     pathPrefix = pathPrefix || '/api/';
     return async (ctx, next) => {
       if (ctx.request.path.startsWith(pathPrefix)) {
-        ctx.rest = (data = null, code = 0, msg = null) => {
+        ctx.rest = (data = null, code = 0, msg = '成功') => {
           ctx.response.type = 'application/json';
           ctx.response.body = {
             code, msg, data

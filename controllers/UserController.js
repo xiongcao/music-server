@@ -4,16 +4,16 @@ const APIError = require('../rest').APIError;
 const crypto = require('crypto');
 
 module.exports = {
-  'GET /signin': async (ctx, next) => {
+  'GET /signin': async ctx => {
     ctx.render('signin.html');
   },
 
-  'GET /register': async (ctx, next) => {
+  'GET /register': async ctx => {
     ctx.render('register.html');
   },
 
   // 用户名登录
-  'POST /api/signin/phoneNumber': async (ctx, next) => {
+  'POST /api/signin/phoneNumber': async ctx => {
     const hash = crypto.createHash('md5');
     const { name, password } = ctx.request.body;
     let md5Password = hash.update(password).digest('hex'); // 加密后的密码
@@ -30,7 +30,7 @@ module.exports = {
   },
 
   // 手机号登录
-  'POST /api/signin/phoneNumber': async (ctx, next) => {
+  'POST /api/signin/phoneNumber': async ctx => {
     const hash = crypto.createHash('md5');
     const { phoneNumber, password } = ctx.request.body;
     let md5Password = hash.update(password).digest('hex'); // 加密后的密码
@@ -47,7 +47,7 @@ module.exports = {
   },
 
   // 注册
-  'POST /api/register': async (ctx, next) => {
+  'POST /api/register': async ctx => {
     const hash = crypto.createHash('md5');
     const { name, phoneNumber, password } = ctx.request.body;
     const user = await UserService.findUserByName(name);
@@ -72,7 +72,7 @@ module.exports = {
     }
   },
 
-  'GET /api/signout': async (ctx, next) => {
+  'GET /api/signout': async ctx => {
     ctx.cookies.set('token', '');
     ctx.session = {};
     ctx.rest(null, 0, '退出成功');
