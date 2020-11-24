@@ -1,5 +1,4 @@
 const UserService = require('../service/UserService');
-const APIError = require('../rest').APIError;
 
 const crypto = require('crypto');
 
@@ -69,6 +68,17 @@ module.exports = {
       ctx.rest(null, 0, '注册成功');
     } else {
       ctx.rest(null, 1, '注册失败');
+    }
+  },
+
+  // 根据ID查询用户
+  'GET /api/user/:id': async ctx => {
+    const { id } = ctx.request.params;
+    const res = await UserService.findUserById(id);
+    if (res) {
+      ctx.rest(res);
+    } else {
+      ctx.rest(null, 1, '失败');
     }
   },
 

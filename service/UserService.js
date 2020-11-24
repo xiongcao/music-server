@@ -71,6 +71,15 @@ module.exports = {
     return await Singer.create(user);
   },
   /**
+   * @description 根据ID查询用户信息
+   * @id 用户ID
+   */
+  findUserById: async (id) => {
+    return await Singer.findOne({
+      where: { id }
+    });
+  },
+  /**
    * @description 根据ID删除用户信息
    * @id 用户ID
    */
