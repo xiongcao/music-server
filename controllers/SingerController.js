@@ -7,7 +7,7 @@ module.exports = {
   'GET /api/singer/list': async ctx => {
     const { typeId, page, size } = ctx.request.query;
     // 查询所有歌手
-    const list = await SingerService.findAllPages({ typeId, page, size: Number(size) });
+    const list = await SingerService.findAllPages({ typeId, page, size });
     const count = await SingerService.findAllCount();
     // 查询歌手总数
     const res = pageTable(list, page, size, count.length);

@@ -10,7 +10,7 @@ module.exports = {
    * @orderFileds 排序字段
    * @orderRules 排序规则
    */
-  findUserAllPages: async ({ page = 0, size = 50, orderFileds = 'createdAt', orderRules = 'ASC' }) => {
+  findUserAllPages: async ({ page = 0, size = 20, orderFileds = 'createdAt', orderRules = 'ASC' }) => {
     return await Singer.findAll({
       limit: size,
       offset: page * size,

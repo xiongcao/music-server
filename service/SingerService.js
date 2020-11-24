@@ -13,7 +13,7 @@ module.exports = {
    * @orderFileds 排序字段
    * @orderRules 排序规则
    */
-  findAllPages: async ({ typeId = '', nickname = '', page = 0, size = 50, orderFileds = 'createdAt', orderRules = 'ASC' }) => {
+  findAllPages: async ({ typeId = '', nickname = '', page = 0, size = 20, orderFileds = 'createdAt', orderRules = 'ASC' }) => {
     // 查询所有歌手
     let sql = `
       SELECT * FROM singer AS s 
@@ -36,7 +36,7 @@ module.exports = {
       model: Singer,
       mapToModel: true,
       replacements: {
-        typeId, orderFileds, orderRules, pageSize: page * size, size
+        typeId, orderFileds, orderRules, pageSize: page * size, size: Number(size)
       }
     });
     return list;

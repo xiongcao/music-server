@@ -46,7 +46,7 @@ module.exports = db.defineModel('sheet', {
   // 类型
   type: {
     type: db.INTEGER(11),
-    defaultValue: 0 // 0：歌单，1：榜单
+    defaultValue: 0 // 0：精选歌单，1：榜单，2：网友歌单
   },
   // 排序
   rank: {
