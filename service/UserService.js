@@ -19,12 +19,14 @@ module.exports = {
       ]
     });
   },
+
   /**
    * @description 查询用户总数
    */
   findUserAllCount: async () => {
     return await Singer.count();
   },
+
   /**
    * @description 根据用户名和密码查询用户信息
    * @name 用户名
@@ -35,6 +37,7 @@ module.exports = {
       where: { name, password }
     });
   },
+
   /**
    * @description 根据手机号和密码查询用户信息
    * @phoneNumber 手机号
@@ -45,6 +48,7 @@ module.exports = {
       where: { phoneNumber, password }
     });
   },
+
   /**
    * @description 根据用户名查询用户信息
    * @name 用户名
@@ -54,6 +58,7 @@ module.exports = {
       where: { name }
     });
   },
+  
   /**
    * @description 根据手机号查询用户信息
    * @phoneNumber 手机号
@@ -63,6 +68,7 @@ module.exports = {
       where: { phoneNumber }
     });
   },
+
   /**
    * @description 保存用户信息
    * @user 用户实体对象
@@ -70,6 +76,7 @@ module.exports = {
   createUser: async (user) => {
     return await Singer.create(user);
   },
+
   /**
    * @description 根据ID查询用户信息
    * @id 用户ID
@@ -79,6 +86,7 @@ module.exports = {
       where: { id }
     });
   },
+
   /**
    * @description 根据ID删除用户信息
    * @id 用户ID
@@ -88,6 +96,7 @@ module.exports = {
       where: { id }
     });
   },
+  
   /**
    * @description 根据ID删除用户信息，不使用该接口
    * @id 用户ID

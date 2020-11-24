@@ -21,6 +21,7 @@ module.exports = {
     });
     return list;
   },
+  
   /**
    * @description 根据ID查询专辑信息
    * @id 专辑ID

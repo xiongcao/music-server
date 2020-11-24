@@ -40,6 +40,7 @@ module.exports = {
     });
     return list;
   },
+
   /**
    * @description 查询所有歌手
    * @type 歌单类型 0：精选歌单，1：榜单，2：网友歌单
@@ -57,6 +58,7 @@ module.exports = {
     }
     return await Sheet.findAll(query);
   },
+
   /**
    * @description 查询歌单数量
    * @type 歌单类型 0：精选歌单，1：榜单，2：网友歌单
@@ -68,6 +70,7 @@ module.exports = {
     }
     return await Sheet.count(query);
   },
+  
   /**
    * @description 根据标签名查询歌单总数
    * @type 歌单类型 0：精选歌单，1：榜单，2：网友歌单

@@ -10,6 +10,7 @@ module.exports = {
   findAll: async () => {
     return await SingerType.findAll();
   },
+
   /**
    * @description 查询所有一级分类
    */
@@ -22,6 +23,7 @@ module.exports = {
       }
     });
   },
+
   /**
    * @description 添加分类
    * @type 分类信息
@@ -29,6 +31,7 @@ module.exports = {
   create: async (type) => {
     return await SingerType.create(type);
   },
+
   /**
    * @description 根据ID查询分类信息
    * @id 分类ID
@@ -40,6 +43,7 @@ module.exports = {
       }
     });
   },
+  
   /**
    * @description 根据ID修改状态
    * @id 分类ID

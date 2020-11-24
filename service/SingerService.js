@@ -41,6 +41,7 @@ module.exports = {
     });
     return list;
   },
+
   /**
    * @description 查询歌手总数
    */
@@ -49,6 +50,7 @@ module.exports = {
       type: QueryTypes.SELECT
     });
   },
+  
   /**
    * @description 根据ID查询歌手信息
    * @id 歌手ID

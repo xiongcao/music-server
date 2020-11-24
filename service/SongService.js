@@ -10,6 +10,7 @@ module.exports = {
   findAll: async () => {
     return await Song.findAll();
   },
+  
   /**
    * @description 根据专辑ID查询所有歌曲信息
    * @albumId 专辑ID
