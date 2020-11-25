@@ -1,7 +1,7 @@
 const model = require('../db/model');
-const { QueryTypes } = require('sequelize');
+const { QueryTypes, Op } = require('sequelize');
 
-const { Singer, SQL } = model;
+const { Singer, Song, SQL } = model;
 
 module.exports = {
   /**
@@ -50,14 +50,65 @@ module.exports = {
       type: QueryTypes.SELECT
     });
   },
-  
+
   /**
    * @description 根据ID查询歌手信息
    * @id 歌手ID
    */
   findSingerById: async (id) => {
     return await Singer.findOne({
-      where: { id }
+      where: { singerId: id }
     });
-  }
+  },
+
+  /**
+   * @description 搜索 歌手信息
+   * @name 歌手名称
+   */
+  findAllPageByName: async ({ name, page = 0, size = 20 }) => {
+    return await Singer.findAll(
+      {
+        offset: page * size, limit: size,
+        where: {
+          nickname: {
+            [Op.like]: '%' + name + '%'
+          }
+        }
+      }
+    );
+  },
+
+  /**
+   * @description 搜索 歌手信息 总数量
+   * @name 歌手名称
+   */
+  findCountByName: async (name) => {
+    return await Singer.count(
+      {
+        where: {
+          nickname: {
+            [Op.like]: '%' + name + '%'
+          }
+        }
+      }
+    );
+  },
+
+  /**
+   * @description 根据 歌手ID查询 歌手的所有歌曲
+   * @id 歌手ID
+   */
+  findAllSongBySingerId: async (id) => {
+    let sql = `
+      SELECT song.* FROM singer AS s
+      INNER JOIN singer_song_mapping AS ssm ON s.singer_id = ssm.singer_id
+      INNER JOIN song ON song.song_id = ssm.song_id
+      WHERE s.singer_id = ?;
+    `;
+    return await SQL.query(sql, {
+      model: Song,
+      mapToModel: true,
+      replacements: [id]
+    })
+  },
 }

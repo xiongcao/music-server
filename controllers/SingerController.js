@@ -17,12 +17,26 @@ module.exports = {
       ctx.rest(null, 1, '失败');
     }
   },
+  
   // 根据ID查询歌手
   'GET /api/singer/:id': async ctx => {
     const { id } = ctx.request.params;
     const res = await SingerService.findSingerById(id);
     if (res) {
       ctx.rest(res);
+    } else {
+      ctx.rest(null, 1, '失败');
+    }
+  },
+
+  // 根据ID查询歌手所有歌曲
+  'GET /api/singerAllSong/:id': async ctx => {
+    const { id } = ctx.request.params;
+    const singer = await SingerService.findSingerById(id);
+    const song = await SingerService.findAllSongBySingerId(id);
+    singer.dataValues.songList = song;
+    if (singer) {
+      ctx.rest(singer);
     } else {
       ctx.rest(null, 1, '失败');
     }

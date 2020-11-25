@@ -1,4 +1,5 @@
 const model = require('../db/model');
+const { Op } = require('sequelize');
 
 const { Sheet, SQL } = model;
 
@@ -42,7 +43,7 @@ module.exports = {
   },
 
   /**
-   * @description 查询所有歌手
+   * @description 查询所有歌单
    * @type 歌单类型 0：精选歌单，1：榜单，2：网友歌单
    */
   findAll: async ({ type, page = 0, size = 20, orderFileds = 'createdAt', orderRules = 'ASC' }) => {
@@ -94,5 +95,66 @@ module.exports = {
       }
     });
     return list;
+  },
+
+  /**
+   * @description 查询所有 排行榜歌单
+   * @type 歌单类型 0：精选歌单，1：榜单，2：网友歌单
+   * @tagName 标签名
+   */
+  findAllTopList: async () => {
+    return await Sheet.findAll({
+      where: {
+        type: 1
+      },
+      order: [
+        ['createdAt', 'ASC']
+      ]
+    })
+  },
+
+  /**
+   * @description 根据歌单ID查询歌单信息
+   * @sheetId 歌单ID
+   */
+  findSheetById: async (sheetId) => {
+    return await Sheet.findOne({
+      where: {
+        sheetId
+      }
+    })
+  },
+
+  /**
+   * @description 搜索 歌单信息
+   * @name 歌单名称
+   */
+  findAllPageByName: async ({ name, page = 0, size = 20 }) => {
+    return await Sheet.findAll(
+      {
+        offset: page * size, limit: size,
+        where: {
+          name: {
+            [Op.like]: '%' + name + '%'
+          }
+        }
+      }
+    );
+  },
+
+  /**
+   * @description 搜索 歌单信息 总数量
+   * @name 歌单名称
+   */
+  findCountByName: async (name) => {
+    return await Sheet.count(
+      {
+        where: {
+          name: {
+            [Op.like]: '%' + name + '%'
+          }
+        }
+      }
+    );
   },
 }

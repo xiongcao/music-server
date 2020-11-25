@@ -17,16 +17,23 @@ module.exports = {
       ctx.rest(null, 1, '失败');
     }
   },
-  // 根据ID查询专辑详细信息
+  
+  // 根据ID查询专辑 所有 歌曲信息 ,id => albumId
   'GET /api/album/:id': async ctx => {
     const { id } = ctx.request.params;
     if (!id) {
       ctx.rest(null, 1, '专辑ID不可为空');
       return
     }
+    const album = await AlbumService.findAlbumByAlbumId(id);
+    if (!album) {
+      ctx.rest(null, 1, '没有找到');
+      return
+    }
     const songs = await SongService.findAllSongByAlbumId(id);
-    if (songs) {
-      ctx.rest(songs);
+    album.dataValues.songList = songs;
+    if (album) {
+      ctx.rest(album);
     } else {
       ctx.rest(null, 1, '失败');
     }

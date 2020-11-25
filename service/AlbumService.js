@@ -1,4 +1,5 @@
 const model = require('../db/model');
+const { Op } = require('sequelize');
 
 const { Album, SQL } = model;
 
@@ -24,11 +25,44 @@ module.exports = {
   
   /**
    * @description 根据ID查询专辑信息
-   * @id 专辑ID
+   * @albumId 专辑ID
    */
-  findAlbumById: async (id) => {
+  findAlbumByAlbumId: async (albumId) => {
     return await Album.findOne({
-      where: { id }
+      where: { albumId }
     });
-  }
+  },
+
+  /**
+   * @description 搜索 专辑信息
+   * @name 专辑名称
+   */
+  findAllPageByName: async ({ name, page = 0, size = 20 }) => {
+    return await Album.findAll(
+      {
+        offset: page * size, limit: size,
+        where: {
+          name: {
+            [Op.like]: '%' + name + '%'
+          }
+        }
+      }
+    );
+  },
+
+   /**
+   * @description 搜索 专辑信息 的总数量
+   * @name 专辑名称
+   */
+  findCountByName: async (name) => {
+    return await Album.count(
+      {
+        where: {
+          name: {
+            [Op.like]: '%' + name + '%'
+          }
+        }
+      }
+    );
+  },
 }
