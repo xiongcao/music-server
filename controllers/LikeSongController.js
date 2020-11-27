@@ -33,13 +33,12 @@ module.exports = {
 
     if (likeSong && likeSong.songId) {
       const { songId } = likeSong;
-      // 查询是否 已存在 改数据，只是被取消了喜欢状态
+      // 查询是否 已存在 该数据，只是被取消了喜欢状态
       const song = await LikeSongService.findByUserIdAndSongId(userId, songId);
       if (song) { // 存在，只需修改原数据
         res = await LikeSongService.addlLike(song.id);
       } else {
         likeSong.userId = userId;
-        console.log(likeSong, 222)
         res = await LikeSongService.create(likeSong);
       }
       if (res) {
