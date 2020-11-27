@@ -13,10 +13,10 @@ module.exports = db.defineModel('album', {
     field: 'singer_id'
   },
   // 专辑名
-  name: db.STRING(100),
+  name: db.STRING(1000),
   // 图片路径
   picUrl: {
-    type: db.STRING(100),
+    type: db.STRING(1000),
     allowNull: true,
     field: 'pic_url'
   },
@@ -51,7 +51,7 @@ module.exports = db.defineModel('album', {
   },
   // 公司
   company: {
-    type: db.STRING(100),
+    type: db.STRING(1000),
     allowNull: true
   },
   type: {

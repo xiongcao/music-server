@@ -12,14 +12,15 @@ module.exports = {
   },
 
   // 用户名登录
-  'POST /api/signin/phoneNumber': async ctx => {
+  'POST /api/signin': async ctx => {
     const hash = crypto.createHash('md5');
     const { name, password } = ctx.request.body;
     let md5Password = hash.update(password).digest('hex'); // 加密后的密码
     const user = await UserService.findUserByNameAndPassword(name, md5Password);
     if (user) {
       ctx.session = {
-        userId: user.id,
+        id: user.id,
+        userId: user.singerId,
         userName: user.name
       }
       ctx.rest(null, 0, '登录成功');

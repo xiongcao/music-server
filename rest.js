@@ -55,17 +55,17 @@ module.exports = {
   },
 
   /**
-   * 中间件：校验接口是否需要登录
+   * 中间件：校验接口是否需要登录, true: 未登录，false: 已登录
    */
   checkLoginStatus: () => {
     return async (ctx, next) => {
-      ctx.isLogin = async () => {
+      ctx.isNotLogin = async () => {
         const sessionId = ctx.session.userId;
         if (!sessionId) {
           ctx.rest(null, -1, '未登录')
-          return false;
+          return true;
         }
-        return true
+        return false
       };
       await next();
     }
